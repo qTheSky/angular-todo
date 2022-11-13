@@ -1,0 +1,13 @@
+<div style="display: flex;flex-direction: column">
+  <div style="display: flex">
+    <h2>{{todo.title}}</h2>
+    <button (click)="deleteTodo()">X</button>
+  </div>
+  <app-add-item-form [addItemCallBack]="createTask.bind(this)"></app-add-item-form>
+  <app-tasks *ngFor="let task of getArrayOfTasks()" [task]="task"></app-tasks>
+  <div style="display: flex">
+    <button (click)="changeTodoFilter(todo.id,'all')">all</button>
+    <button (click)="changeTodoFilter(todo.id,'active')">active</button>
+    <button (click)="changeTodoFilter(todo.id,'completed')">completed</button>
+  </div>
+</div>

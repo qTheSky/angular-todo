@@ -1,0 +1,5 @@
+<div>
+  <input (ngModelChange)="changeTaskStatus($event)" [(ngModel)]="task.status" type="checkbox">
+  {{task.title}}
+  <button (click)="deleteTask()">X</button>
+</div>

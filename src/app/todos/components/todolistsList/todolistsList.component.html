@@ -1,0 +1,4 @@
+<app-add-item-form [addItemCallBack]="createTodo.bind(this)"></app-add-item-form>
+<div style="display: flex;gap: 20px">
+  <app-todo *ngFor="let todo of todos$ | async" [todo]="todo"></app-todo>
+</div>
