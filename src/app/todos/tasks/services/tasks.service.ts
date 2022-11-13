@@ -56,8 +56,8 @@ export class TasksService {
       .pipe(
         catchError(this.errorHandler.bind(this)),
         map((res) => {
-          const newTask = res.data.item
-          return {...this.tasksState$.getValue(), [todoId]: [newTask, ...this.tasksState$.getValue()[todoId]]}
+          const tasks = this.tasksState$.getValue()[todoId]
+          return {...this.tasksState$.getValue(), [todoId]: [res.data.item, ...tasks]}
         }))
       .subscribe((newState) => {
         this.tasksState$.next(newState)

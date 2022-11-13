@@ -4,10 +4,12 @@
     <button (click)="deleteTodo()">X</button>
   </div>
   <app-add-item-form [addItemCallBack]="createTask.bind(this)"></app-add-item-form>
-  <app-tasks *ngFor="let task of getArrayOfTasks()" [task]="task"></app-tasks>
+
+  <app-tasks *ngFor="let task of getArrayOfTasksForTodo()" [task]="task"></app-tasks>
+
   <div style="display: flex">
-    <button (click)="changeTodoFilter(todo.id,'all')">all</button>
-    <button (click)="changeTodoFilter(todo.id,'active')">active</button>
-    <button (click)="changeTodoFilter(todo.id,'completed')">completed</button>
+    <button (click)="changeTodoFilter('all')">all</button>
+    <button (click)="changeTodoFilter('active')">active</button>
+    <button (click)="changeTodoFilter('completed')">completed</button>
   </div>
 </div>

@@ -1,9 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FilterValuesType, TodoDomain} from 'src/app/todos/models/todos.models'
 import {TodosService} from 'src/app/todos/services/todos.service'
-import {TasksService, TasksState} from 'src/app/todos/tasks/services/tasks.service'
-import {Observable} from 'rxjs'
-import {TaskStatuses} from 'src/app/todos/tasks/models/task.model'
+import {TasksService} from 'src/app/todos/tasks/services/tasks.service'
+import {Task, TaskStatuses} from 'src/app/todos/tasks/models/task.model'
 
 @Component({
   selector: 'app-todo',
@@ -13,17 +12,15 @@ import {TaskStatuses} from 'src/app/todos/tasks/models/task.model'
 export class TodoComponent implements OnInit {
   @Input() todo!: TodoDomain
 
-  tasks$!: Observable<TasksState>
 
   constructor(private todosService: TodosService, private tasksService: TasksService) {
   }
 
   ngOnInit() {
-    this.tasks$ = this.tasksService.tasksState$
     this.tasksService.fetchTasks(this.todo.id)
   }
 
-  getArrayOfTasks() {
+  getArrayOfTasksForTodo() {
     switch (this.todo.filter) {
       case 'all':
         return this.tasksService.getArrayOfTasks(this.todo.id)
@@ -36,7 +33,7 @@ export class TodoComponent implements OnInit {
     }
   }
 
-  changeTodoFilter(todoId: string, filter: FilterValuesType) {
+  changeTodoFilter(filter: FilterValuesType) {
     this.todosService.changeTodoFilter(this.todo.id, filter)
   }
 
